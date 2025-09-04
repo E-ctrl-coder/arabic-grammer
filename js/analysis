@@ -1,0 +1,59 @@
+// analysis.js — deterministic mock translation and morphology
+// Browser-only, no external calls. Replace with APIs later if desired.
+
+export function detectInputType(text) {
+  if (!text) return 'empty';
+  // Simple heuristic: Latin letters => english, otherwise arabic
+  return /[a-zA-Z]/.test(text) ? 'english' : 'arabic';
+}
+
+const eng2ar = {
+  write: 'كتب',
+  read: 'قرأ',
+  say: 'قال',
+  give: 'أعطى',
+  come: 'جاء'
+};
+
+const arMorph = {
+  'كتب': { pattern: 'فعل ماضٍ', root: 'ك-ت-ب', type: 'verb', paraphrase: 'wrote' },
+  'يكتب': { pattern: 'فعل مضارع', root: 'ك-ت-ب', type: 'verb', paraphrase: 'writes/is writing' },
+  'اكتب': { pattern: 'فعل أمر', root: 'ك-ت-ب', type: 'verb', paraphrase: 'write!' },
+  'قرأ': { pattern: 'فعل ماضٍ', root: 'ق-ر-أ', type: 'verb', paraphrase: 'read (past)' },
+  'قال': { pattern: 'فعل ماضٍ', root: 'ق-و-ل', type: 'verb', paraphrase: 'said' },
+  'الذي': { pattern: 'اسم موصول', root: '-', type: 'particle', paraphrase: 'which/who (masc. sing.)' }
+};
+
+export function translateToArabic(english) {
+  const key = english.trim().toLowerCase();
+  return eng2ar[key] || '';
+}
+
+export function analyseArabic(arabic) {
+  const token = arabic.trim();
+  const entry = arMorph[token];
+  if (entry) {
+    return {
+      input: token,
+      translation: entry.paraphrase,
+      morphology: {
+        pattern: entry.pattern,
+        root: entry.root,
+        type: entry.type
+      },
+      grammarType: entry.pattern
+    };
+  }
+  // Fallback heuristic
+  const guess = {
+    pattern: /^(ي|ت|ن)/.test(token) ? 'فعل مضارع' : 'فعل ماضٍ',
+    root: '—',
+    type: 'unknown'
+  };
+  return {
+    input: token,
+    translation: '—',
+    morphology: guess,
+    grammarType: guess.pattern
+  };
+}
