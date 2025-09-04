@@ -1,1 +1,14 @@
-
+{
+  "فعل ماضٍ": {
+    "en": "past tense",
+    "desc": "Action completed in the past"
+  },
+  "ضمير متصل": {
+    "en": "attached pronoun",
+    "desc": "Pronoun attached to a word to indicate possession or object"
+  },
+  "اسم فاعل": {
+    "en": "active participle",
+    "desc": "Indicates the doer of an action"
+  }
+}
