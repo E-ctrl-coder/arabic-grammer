@@ -1,42 +1,95 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Qur’anic Grammar & Phrase Builder</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>باني القواعد والعبارات القرآنية | Qur’anic Grammar & Phrase Builder</title>
+  <meta name="description" content="Browser-only, bilingual Qur’anic Arabic grammar analysis and phrase builder." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preload" href="data/glossary.json" as="fetch" crossorigin="anonymous" />
 </head>
 <body>
-  <header>
-    <h1>باني القواعد والعبارات القرآنية</h1>
+  <header class="app-header">
+    <h1 aria-label="Qur’anic Grammar and Phrase Builder">باني القواعد والعبارات القرآنية</h1>
+    <nav class="crumbs" aria-label="breadcrumbs">
+      <a href="/">examinequraan.slavetogod.com</a> / <span>Grammar Builder</span>
+    </nav>
   </header>
 
-  <main>
-    <section id="input-section">
-      <label for="user-input">أدخل آية أو كلمة أو فعل إنجليزي:</label>
-      <input type="text" id="user-input" placeholder="مثال: كتب أو write">
-      <button id="analyse-btn">تحليل</button>
+  <main id="main" class="container">
+    <!-- Purpose / banner -->
+    <section class="banner" aria-labelledby="purpose-title">
+      <h2 id="purpose-title">الغاية</h2>
+      <ul>
+        <li><strong>المبدأ:</strong> متصفح فقط، ثنائي اللغة، قابل للتوسع.</li>
+        <li><strong>التوثيق:</strong> نتائج محددة وقابلة لإعادة الإنتاج.</li>
+        <li><strong>العرض:</strong> مصطلحات عربية مع الإنجليزية في التلميحات.</li>
+      </ul>
     </section>
 
-    <section id="output-section">
-      <div id="translation"></div>
-      <div id="morphology"></div>
-      <div id="grammar-type"></div>
+    <!-- Input section -->
+    <section id="input-section" aria-labelledby="input-title">
+      <h2 id="input-title">الإدخال</h2>
+      <div class="input-row">
+        <label for="user-input">أدخل آية أو كلمة عربية أو فعل إنجليزي:</label>
+        <input type="text" id="user-input" placeholder="مثال: كتب أو write" inputmode="text" />
+        <button id="analyse-btn" class="primary">تحليل</button>
+      </div>
+      <div class="examples">
+        <details>
+          <summary>أمثلة جاهزة</summary>
+          <div id="examples-list" class="chips" aria-live="polite"></div>
+        </details>
+      </div>
     </section>
 
-    <section id="grammar-builder-section">
-      <h2>بناء عبارة جديدة</h2>
-      <div id="builder-ui"></div>
+    <!-- Output section -->
+    <section id="output-section" aria-labelledby="output-title">
+      <h2 id="output-title">المخرجات</h2>
+      <div class="cards">
+        <article class="card" aria-live="polite">
+          <h3>الترجمة / Paraphrase</h3>
+          <div id="translation" class="value muted">—</div>
+        </article>
+        <article class="card" aria-live="polite">
+          <h3>الصرف (Morphology)</h3>
+          <div id="morphology" class="value muted">—</div>
+        </article>
+        <article class="card" aria-live="polite">
+          <h3>النوع النحوي (Grammar Type)</h3>
+          <div id="grammar-type" class="value muted">—</div>
+        </article>
+      </div>
+      <p class="hint">
+        مرّر المؤشر أو اضغط على المصطلحات المظللة للحصول على التلميح (مثال:
+        <span class="term" data-term="فعل ماضٍ" tabindex="0">فعل ماضٍ</span>).
+      </p>
     </section>
 
-    <section id="grammar-tables">
-      <h2>جداول القواعد</h2>
-      <div id="tables-container"></div>
+    <!-- Grammar Builder -->
+    <section id="grammar-builder-section" aria-labelledby="builder-title">
+      <h2 id="builder-title">بناء عبارة جديدة</h2>
+      <div id="builder-ui" class="builder"></div>
+      <div id="builder-preview" class="preview" aria-live="polite" aria-atomic="true"></div>
+    </section>
+
+    <!-- Grammar tables -->
+    <section id="grammar-tables" aria-labelledby="tables-title">
+      <h2 id="tables-title">جداول القواعد</h2>
+      <div id="tables-container" class="tables"></div>
     </section>
   </main>
 
+  <footer class="app-footer">
+    <small>v1.0.0 — Browser-only. All glossary/tooltips from a single JSON source.</small>
+  </footer>
+
+  <div id="tooltip" class="tooltip" role="tooltip" aria-hidden="true"></div>
+
   <script src="js/glossary.js"></script>
   <script src="js/ui.js"></script>
+  <script src="js/analysis.js"></script>
+  <script src="js/tables.js"></script>
   <script src="js/builder.js"></script>
   <script src="js/app.js"></script>
 </body>
