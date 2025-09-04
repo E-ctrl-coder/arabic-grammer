@@ -1,33 +1,213 @@
-body {
-  font-family: 'Amiri', serif;
+:root {
+  --bg: #fafafa;
+  --fg: #1f2937;
+  --muted: #6b7280;
+  --brand: #004d40;
+  --accent: #0ea5e9;
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --hint: #fff8e1;
+  --hint-border: #f5d36b;
+  --danger: #dc2626;
+  --ok: #047857;
+  --radius: 10px;
+  --gap: 1rem;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
   margin: 0;
   padding: 0;
-  background: #fafafa;
-  color: #222;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Amiri", "Segoe UI", system-ui, -apple-system, sans-serif;
+  line-height: 1.45;
 }
 
-header {
-  background: #004d40;
+.app-header {
+  background: var(--brand);
   color: white;
   padding: 1rem;
-  text-align: center;
 }
+.app-header h1 {
+  margin: 0;
+  font-weight: 700;
+}
+.crumbs {
+  opacity: 0.85;
+  font-size: 0.9rem;
+}
+.crumbs a { color: #c8f7f1; text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
 
-main {
+.container { max-width: 1100px; margin: 0 auto; padding: 1rem; }
+
+.banner, section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   padding: 1rem;
+  margin: 1rem 0;
 }
 
-input, button {
-  font-size: 1rem;
-  padding: 0.5rem;
-  margin: 0.25rem 0;
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+  align-items: end;
 }
+.input-row label { grid-column: 1 / -1; }
+input[type="text"] {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+button {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+}
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+button:focus, input:focus, .term:focus {
+  outline: 3px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+.examples .chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+.chip .lang { color: var(--muted); font-size: 0.8rem; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: var(--gap);
+}
+.card {
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+}
+.value { margin-top: 0.5rem; font-size: 1.05rem; }
+.muted { color: var(--muted); }
+
+.hint {
+  margin-top: 0.75rem;
+  background: var(--hint);
+  border: 1px solid var(--hint-border);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+}
+
+.term {
+  color: #0b7285;
+  background: #e6fcf5;
+  border: 1px solid #c3fae8;
+  padding: 0.05rem 0.35rem;
+  border-radius: 6px;
+  cursor: help;
+}
+
+.builder {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+  gap: var(--gap);
+}
+.builder .field {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem;
+  background: #fff;
+}
+.builder .field label { display: block; margin-bottom: 0.35rem; font-weight: 600; }
+.builder select, .builder input[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+.builder .actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.preview {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 8px;
+}
+
+.tables .table-block {
+  margin: 0.5rem 0 1rem;
+}
+.table-block h3 { margin: 0.25rem 0 0.5rem; }
+.table-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px,1fr));
+  gap: 0.35rem;
+}
+.cell {
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 6px;
+  padding: 0.5rem;
+  text-align: center;
+  cursor: pointer;
+}
+.cell.related { background: #eef2ff; border-color: #c7d2fe; }
+.cell.highlight { background: #dcfce7; border-color: #86efac; }
 
 .tooltip {
-  background: #fff8e1;
-  border: 1px solid #ccc;
-  padding: 0.5rem;
-  position: absolute;
-  z-index: 10;
+  position: fixed;
+  z-index: 1000;
+  max-width: 320px;
+  background: #fffdf7;
+  border: 1px solid #f3d98b;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.98rem;
   display: none;
+}
+.tooltip strong { font-weight: 700; }
+
+.app-footer {
+  padding: 1rem;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* Small screens */
+@media (max-width: 540px) {
+  .input-row {
+    grid-template-columns: 1fr;
+  }
 }
