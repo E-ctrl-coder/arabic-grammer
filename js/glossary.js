@@ -1,10 +1,21 @@
-let glossary = {};
+// glossary.js — single source of truth loader
+// Deterministic: version pinned within JSON; exported here for UI.
 
-async function loadGlossary() {
-  const res = await fetch('data/glossary.json');
-  glossary = await res.json();
+export const Glossary = {
+  version: 'unknown',
+  terms: {},
+  loaded: false
+};
+
+export async function loadGlossary() {
+  const res = await fetch('data/glossary.json', { cache: 'no-store' });
+  const json = await res.json();
+  Glossary.version = json.version || 'unknown';
+  Glossary.terms = json.terms || {};
+  Glossary.loaded = true;
+  return Glossary;
 }
 
-function getTooltipData(term) {
-  return glossary[term] || null;
+export function getTooltipData(term) {
+  return Glossary.terms[term] || null;
 }
