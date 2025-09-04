@@ -1,0 +1,15 @@
+{
+  "name": "quranic-grammar-builder",
+  "version": "1.0.0",
+  "description": "Browser-only Qur’anic Grammar & Phrase Builder with bilingual tooltips and interactive tables.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "serve": "node server.js",
+    "lint": "echo \"No linter configured yet\""
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
