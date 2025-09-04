@@ -1,14 +1,20 @@
 {
-  "فعل ماضٍ": {
-    "en": "past tense",
-    "desc": "Action completed in the past"
-  },
-  "ضمير متصل": {
-    "en": "attached pronoun",
-    "desc": "Pronoun attached to a word to indicate possession or object"
-  },
-  "اسم فاعل": {
-    "en": "active participle",
-    "desc": "Indicates the doer of an action"
+  "version": "1.0.0",
+  "terms": {
+    "فعل ماضٍ": { "en": "past tense", "desc": "Action completed in the past." },
+    "فعل مضارع": { "en": "present tense", "desc": "Action ongoing or habitual." },
+    "فعل أمر": { "en": "imperative", "desc": "Command or request form." },
+    "ضمير متصل": { "en": "attached pronoun", "desc": "Pronoun attached to a word to indicate possession or object." },
+    "ضمير منفصل": { "en": "detached pronoun", "desc": "Standalone pronoun used as subject or focus." },
+    "اسم فاعل": { "en": "active participle", "desc": "Indicates the doer of an action." },
+    "اسم مفعول": { "en": "passive participle", "desc": "Indicates the receiver of an action." },
+    "مرفوع": { "en": "nominative", "desc": "Case marking for subjects and certain predicates." },
+    "منصوب": { "en": "accusative", "desc": "Case marking for direct objects and adverbs." },
+    "مجرور": { "en": "genitive", "desc": "Case after prepositions and in iḍāfa constructs." },
+    "المبتدأ": { "en": "subject (of nominal sentence)", "desc": "The starting noun in a nominal sentence." },
+    "الخبر": { "en": "predicate (of nominal sentence)", "desc": "Completes or describes the subject in a nominal sentence." },
+    "اسم موصول": { "en": "relative pronoun", "desc": "Connects a clause to a noun (e.g., الذي، التي)." },
+    "حرف جر": { "en": "preposition", "desc": "Causes genitive case on the following noun." },
+    "إضافة": { "en": "genitive construct (iḍāfa)", "desc": "Possessive/associative noun phrase." }
   }
 }
