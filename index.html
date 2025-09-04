@@ -1,1 +1,43 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qur’anic Grammar & Phrase Builder</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>باني القواعد والعبارات القرآنية</h1>
+  </header>
 
+  <main>
+    <section id="input-section">
+      <label for="user-input">أدخل آية أو كلمة أو فعل إنجليزي:</label>
+      <input type="text" id="user-input" placeholder="مثال: كتب أو write">
+      <button id="analyse-btn">تحليل</button>
+    </section>
+
+    <section id="output-section">
+      <div id="translation"></div>
+      <div id="morphology"></div>
+      <div id="grammar-type"></div>
+    </section>
+
+    <section id="grammar-builder-section">
+      <h2>بناء عبارة جديدة</h2>
+      <div id="builder-ui"></div>
+    </section>
+
+    <section id="grammar-tables">
+      <h2>جداول القواعد</h2>
+      <div id="tables-container"></div>
+    </section>
+  </main>
+
+  <script src="js/glossary.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/builder.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
