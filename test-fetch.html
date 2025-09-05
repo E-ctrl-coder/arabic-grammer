@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fetch Test</title>
+</head>
+<body>
+  <h1>Fetch Test</h1>
+  <pre id="output">Loading...</pre>
+
+  <script>
+    fetch('./myfile.json')
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
+      .then(data => {
+        document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+      })
+      .catch(err => {
+        document.getElementById('output').textContent = `Error: ${err.message}`;
+        console.error(err);
+      });
+  </script>
+</body>
+</html>

@@ -6,7 +6,7 @@
   <title>باني القواعد والعبارات القرآنية | Qur’anic Grammar & Phrase Builder</title>
   <meta name="description" content="Browser-only, bilingual Qur’anic Arabic grammar analysis and phrase builder." />
   <link rel="stylesheet" href="css/styles.css" />
-  <link rel="preload" href="data/glossary.json" as="fetch" crossorigin="anonymous" />
+  <link rel="preload" href="/data/glossary.json" as="fetch" type="application/json" crossorigin="anonymous">
 </head>
 <body>
   <header class="app-header">
@@ -86,11 +86,21 @@
 
   <div id="tooltip" class="tooltip" role="tooltip" aria-hidden="true"></div>
 
-  <script src="js/glossary.js"></script>
-  <script src="js/ui.js"></script>
-  <script src="js/analysis.js"></script>
-  <script src="js/tables.js"></script>
-  <script src="js/builder.js"></script>
-  <script src="js/app.js"></script>
+  <!-- Only load the main entry point as a module -->
+  <script type="module" src="js/app.js"></script>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('/data/glossary.json')
+    .then(r => r.json())
+    .then(glossary => {
+      console.log('Glossary loaded:', glossary);
+      // Show it on the page for now so you can see it worked
+      const output = document.createElement('pre');
+      output.textContent = JSON.stringify(glossary, null, 2);
+      document.body.appendChild(output);
+    })
+    .catch(err => console.error('Failed to load glossary:', err));
+});
+</script>
 </body>
 </html>
